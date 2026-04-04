@@ -20,6 +20,7 @@
 
 	html {
 		scroll-behavior: smooth;
+		scroll-padding-top: 7.5rem;
 	}
 
 	body {
@@ -114,5 +115,9 @@
 
 	.no-scrollbar::-webkit-scrollbar {
 		display: none;
+	}
+
+	.anchor-section {
+		scroll-margin-top: 8rem;
 	}
 }

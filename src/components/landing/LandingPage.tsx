@@ -6,13 +6,19 @@ import {
 	ChevronRight,
 	Clock3,
 	Cpu,
+	HardDrive,
 	Gamepad2,
 	Gauge,
 	GraduationCap,
 	Keyboard,
 	KeyRound,
 	MapPin,
+	MemoryStick,
+	MessagesSquare,
+	PackageCheck,
+	Settings2,
 	ShieldCheck,
+	Speaker,
 	Star,
 	type LucideIcon,
 } from 'lucide-react';
@@ -33,8 +39,8 @@ type ServiceItem = {
 const expressServices: ServiceItem[] = [
 	{
 		name: 'Mantenimiento preventivo',
-		price: 'Diagnóstico al momento',
-		detail: 'Limpieza interna, revisión general y ajuste para mejorar flujo térmico y rendimiento.',
+		price: '$250 - $350 MXN',
+		detail: 'Limpieza de ventiladores, retiro de polvo y limpieza fisica interna para mejorar temperatura y funcionamiento general.',
 		icon: ShieldCheck,
 	},
 	{
@@ -44,9 +50,9 @@ const expressServices: ServiceItem[] = [
 		icon: Cpu,
 	},
 	{
-		name: 'Formateo y optimización de Windows',
-		price: 'Servicio express',
-		detail: 'Instalación limpia, drivers, mejoras de arranque y configuración para uso diario.',
+		name: 'Instalacion y optimizacion de Windows',
+		price: '$300 - $500 MXN',
+		detail: 'Instalacion de la ISO o distribucion de Windows que necesites, con optimizacion, reduccion de procesos y ajustes para que el equipo se sienta rapido.',
 		icon: Gauge,
 	},
 	{
@@ -54,6 +60,18 @@ const expressServices: ServiceItem[] = [
 		price: '$250 - $450 MXN',
 		detail: 'Configuración funcional para que Word, Excel y PowerPoint queden listos para trabajar.',
 		icon: KeyRound,
+	},
+	{
+		name: 'Antivirus McAfee Total Protection',
+		price: 'Costo variable por vigencia',
+		detail: 'Instalacion con licencia oficial de McAfee Total Protection. El precio cambia segun el tiempo de proteccion que quieras contratar.',
+		icon: BadgeCheck,
+	},
+	{
+		name: 'Consultoria para compra de componentes',
+		price: '$80 - $150 MXN',
+		detail: 'Te recomiendo que SSD, RAM o componente te conviene comprar segun tu laptop, uso y presupuesto para que no gastes de mas.',
+		icon: MessagesSquare,
 	},
 ];
 
@@ -65,10 +83,28 @@ const repairServices: ServiceItem[] = [
 		icon: Gamepad2,
 	},
 	{
-		name: 'Cambio de teclados y carcasas de laptop',
+		name: 'Cambio de SSD',
+		price: 'Cotizacion variable + pieza',
+		detail: 'Instalacion o reemplazo de SSD con revision de compatibilidad. Tambien puedo orientarte en que modelo comprar.',
+		icon: HardDrive,
+	},
+	{
+		name: 'Cambio o ampliacion de memoria RAM',
+		price: 'Cotizacion variable + pieza',
+		detail: 'Instalacion o mejora de memoria RAM con revision de capacidad, frecuencia y compatibilidad con tu laptop.',
+		icon: MemoryStick,
+	},
+	{
+		name: 'Cambio de teclado o bateria para laptop',
 		price: 'Cotización variable',
-		detail: 'Sustitución de piezas dañadas con revisión de compatibilidad y tiempos según disponibilidad.',
+		detail: 'Sustitucion de piezas con revision de compatibilidad. Puede demorar mas por el tiempo de llegada de la refaccion.',
 		icon: Keyboard,
+	},
+	{
+		name: 'Reemplazo de speakers o bocinas',
+		price: 'Cotizacion variable',
+		detail: 'Cambio de bocinas internas para recuperar audio funcional en laptop, segun disponibilidad de pieza compatible.',
+		icon: Speaker,
 	},
 	{
 		name: 'Reparación de cables',
@@ -79,10 +115,10 @@ const repairServices: ServiceItem[] = [
 ];
 
 const trustIndicators = [
-	{ label: 'Computadoras', value: 'Windows, mantenimiento y rendimiento' },
-	{ label: 'Consolas', value: 'Limpieza, drift y revisión térmica' },
+	{ label: 'Laptops', value: 'Mantenimiento, Windows, rendimiento y piezas' },
+	{ label: 'Consolas', value: 'Limpieza, drift y revision termica' },
 	{ label: 'Atención', value: 'Respuesta rápida por WhatsApp' },
-	{ label: 'Proceso', value: 'Diagnóstico honesto y tiempos claros' },
+	{ label: 'Consultas', value: 'Tambien atiendo dudas sobre equipos de escritorio' },
 ];
 
 const contactItems = [
@@ -92,11 +128,11 @@ const contactItems = [
 	},
 	{
 		title: 'Cobertura local',
-		text: 'Atención local con entrega, recepción o punto de encuentro a convenir según tu zona.',
+		text: 'Servicio local en Hidalgo con puntos de entrega y recoleccion definidos para hacerlo practico y confiable.',
 	},
 	{
 		title: 'Contacto directo',
-		text: 'Envía fotos, falla detectada y modelo del equipo para cotizar más rápido.',
+		text: 'Envia fotos, falla detectada y modelo del equipo. Atiendo principalmente laptops, pero tambien recibo consultas sobre escritorio.',
 	},
 ];
 
@@ -117,23 +153,23 @@ const testimonials = [
 
 const pickupLocations = [
 	{
-		title: 'Punto 1: Kiosco',
+		title: 'Jaguey de Tellez, Hidalgo',
 		tag: 'Recoleccion y entrega local',
-		detail: 'Punto de referencia: kiosco. Ideal para entregas rapidas en zona centrica.',
+		detail: 'Punto de referencia: kiosco. Si estas cerca de Jaguey de Tellez, este es el punto mas practico para entrega y recoleccion.',
 		iframeSrc:
 			'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d555.1834394433079!2d-98.78829331699878!3d19.981865694123236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1775330312835!5m2!1ses-419!2smx',
 	},
 	{
-		title: 'Punto 2: OXXO afuera',
+		title: 'Haciendas Margarita, Hidalgo',
 		tag: 'Entrega rapida por mensaje',
-		detail: 'Punto de referencia: OXXO afuera. Coordino por WhatsApp la hora exacta de encuentro.',
+		detail: 'Punto de referencia: OXXO afuera. Si te queda mejor Haciendas Margarita, aqui coordinamos la hora exacta por WhatsApp.',
 		iframeSrc:
 			'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d283.73444198934124!2d-98.72095752826631!3d19.995255411029017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1775330699820!5m2!1ses-419!2smx',
 	},
 	{
-		title: 'Punto 3: Biblioteca UPP',
+		title: 'Biblioteca UPP, Hidalgo',
 		tag: 'Atencion local para estudiantes',
-		detail: 'Punto de referencia: biblioteca UPP. Aqui aplican descuentos y servicios especiales para estudiantes.',
+		detail: 'Punto de referencia: biblioteca UPP. Aqui aplican descuentos especiales para estudiantes de la UPP.',
 		iframeSrc:
 			'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1369.3056528003024!2d-98.6841144287174!3d19.98010697612693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1775330774296!5m2!1ses-419!2smx',
 	},
@@ -141,17 +177,41 @@ const pickupLocations = [
 
 const uppMapsLink = 'https://maps.app.goo.gl/y4so8LQpG1yTjEin8';
 
+const servicePackages = [
+	{
+		name: 'Basico',
+		price: '$250 - $300 MXN',
+		detail: 'Limpieza interna preventiva: ventiladores, disipadores, polvo y limpieza fisica general.',
+		icon: PackageCheck,
+	},
+	{
+		name: 'Completo',
+		price: '$450 - $600 MXN',
+		detail: 'Limpieza interna + cambio de pasta termica con pasta de calidad, desmontaje y revision.',
+		icon: Cpu,
+	},
+	{
+		name: 'Premium',
+		price: '$700 - $900 MXN',
+		detail: 'Limpieza + pasta termica + optimizacion de sistema operativo con Windows y Office listos para trabajar.',
+		icon: Settings2,
+	},
+];
+
 const quoteSteps = [
-	'Envias fotos + falla por WhatsApp.',
-	'Diagnostico claro con rango de costo.',
-	'Aprobacion y entrega con seguimiento.',
+	'Envias fotos, falla y modelo por WhatsApp.',
+	'Recibes una cotizacion clara con alcance y rango de costo.',
+	'Apruebas el servicio y te doy seguimiento hasta la entrega.',
 ];
 
 const confidenceSignals = [
 	'Revision tecnica con checklist en cada equipo.',
 	'Garantia sobre mano de obra en servicios realizados.',
 	'Comunicacion transparente antes de cualquier cambio.',
+	'En trabajos avanzados colaboro con otro tecnico que cuenta con herramientas especializadas.',
 ];
+
+const uppDiscount = '10% de descuento en mano de obra para estudiantes de la UPP';
 
 function MapEmbed({ src, title }: { src: string; title: string }) {
 	const [showMap, setShowMap] = useState(false);
@@ -190,7 +250,7 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 
 	return (
 		<div className="group rounded-3xl border border-white/10 bg-white/6 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:bg-cyan-300/8 hover:shadow-[0_22px_50px_rgba(8,47,73,0.32)]">
-			<div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+			<div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
 				<div className="flex gap-4">
 					<div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-200 transition-colors duration-300 group-hover:border-cyan-300/45 group-hover:bg-cyan-400/20">
 						<Icon className="h-5 w-5" />
@@ -200,7 +260,7 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 						<p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
 					</div>
 				</div>
-				<div className="rounded-full border border-cyan-400/15 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100">
+				<div className="w-fit rounded-full border border-cyan-400/15 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 xl:shrink-0">
 					{item.price}
 				</div>
 			</div>
@@ -225,7 +285,7 @@ export default function LandingPage() {
 				/>
 			</div>
 
-			<header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-md">
+			<header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-md">
 				<div className="section-shell">
 					<div className="mx-auto flex max-w-7xl items-center justify-between py-4">
 						<a href="#" className="group inline-flex items-center gap-2 text-lg font-bold tracking-tight text-white md:text-xl">
@@ -233,14 +293,18 @@ export default function LandingPage() {
 							<span className="bg-linear-to-r from-sky-300 to-blue-500 bg-clip-text text-transparent">MX</span>
 						</a>
 						<nav className="hidden items-center gap-7 text-sm font-medium text-slate-300 md:flex">
+							<a href="#paquetes" className="transition-colors hover:text-white">Paquetes</a>
 							<a href="#servicios" className="transition-colors hover:text-white">Servicios</a>
 							<a href="#reparaciones" className="transition-colors hover:text-white">Reparaciones</a>
 							<a href="#ubicaciones" className="transition-colors hover:text-white">Ubicaciones</a>
 							<a href="#testimonios" className="transition-colors hover:text-white">Testimonios</a>
 						</nav>
 					</div>
-					<div className="no-scrollbar -mx-2 flex gap-2 overflow-x-auto pb-3 md:hidden">
+					<div className="mt-1 pb-3 md:hidden">
+						<p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Explora la pagina</p>
+						<div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
 						{[
+							{ href: '#paquetes', label: 'Paquetes' },
 							{ href: '#servicios', label: 'Servicios' },
 							{ href: '#reparaciones', label: 'Reparaciones' },
 							{ href: '#ubicaciones', label: 'Ubicaciones' },
@@ -249,17 +313,18 @@ export default function LandingPage() {
 							<a
 								key={link.href}
 								href={link.href}
-								className="shrink-0 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-200"
+								className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-200 transition-colors hover:border-cyan-300/35 hover:text-white"
 							>
 								{link.label}
 							</a>
 						))}
+						</div>
 					</div>
 				</div>
 			</header>
 
 			<main>
-				<section className="section-shell pb-20 pt-10 md:pb-28 md:pt-14">
+				<section className="section-shell anchor-section pb-20 pt-10 md:pb-28 md:pt-14">
 					<div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
 						<Reveal>
 							<div>
@@ -275,7 +340,7 @@ export default function LandingPage() {
 									</span>
 								</h1>
 								<p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-									Soporte técnico moderno para computadoras y consolas, con procesos claros, tiempos realistas y atención local que te responde sin vueltas.
+									Servicio local en Hidalgo para laptops, consolas y consultas de escritorio, con tiempos claros, cotizacion honesta y un enfoque express para resolver rapido.
 								</p>
 								<div className="mt-8 flex flex-col gap-4 sm:flex-row">
 									<a
@@ -310,7 +375,11 @@ export default function LandingPage() {
 								<p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">Diagnóstico claro</p>
 								<div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-400/10 p-4">
 									<p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">Cotizacion profesional</p>
-									<p className="mt-2 text-sm leading-7 text-slate-100">Respuesta por mensaje y ruta de solucion con rango de precio antes de iniciar.</p>
+									<p className="mt-2 text-sm leading-7 text-slate-100">Respuesta por mensaje con cotizacion clara, alcance del trabajo y rango de precio antes de iniciar.</p>
+								</div>
+								<div className="mt-4 rounded-2xl border border-emerald-300/20 bg-emerald-400/10 p-4">
+									<p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-100">Descuento UPP</p>
+									<p className="mt-2 text-sm leading-7 text-slate-100">{uppDiscount}. Ideal para estudiantes que entregan o recogen en la biblioteca UPP.</p>
 								</div>
 								<div className="mt-5 grid gap-4 md:grid-cols-2">
 									<div className="rounded-3xl border border-white/10 bg-white/6 p-5">
@@ -340,8 +409,8 @@ export default function LandingPage() {
 								<div className="mt-6 space-y-3 rounded-[28px] border border-white/10 bg-slate-950/35 p-5">
 									{[
 										'Soporte para laptops, PCs y consolas.',
-										'Revisión térmica y limpieza con criterio técnico.',
-										'Colaboración externa cuando una falla exige laboratorio especializado.',
+										'Revision termica y limpieza con criterio tecnico.',
+										'Cuando el trabajo requiere equipo avanzado, colaboro con otro tecnico especializado en esa parte.',
 									].map((line) => (
 										<div key={line} className="flex items-start gap-3">
 											<div className="mt-1 h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(103,232,249,0.75)]" />
@@ -362,12 +431,44 @@ export default function LandingPage() {
 					</div>
 				</section>
 
-				<section id="servicios" className="section-shell py-8 md:py-12">
+				<section id="paquetes" className="section-shell anchor-section py-10 md:py-14">
+					<Reveal>
+						<SectionHeading
+							eyebrow="Paquetes"
+							title="Paquetes sugeridos para mantenimiento y rendimiento"
+							description="Opciones claras para que el cliente entienda rapido cuanto incluye cada nivel de servicio y cuanto puede invertir."
+						/>
+					</Reveal>
+					<div className="mt-10 grid gap-6 lg:grid-cols-3">
+						{servicePackages.map((pkg, index) => {
+							const Icon = pkg.icon;
+
+							return (
+								<Reveal key={pkg.name} delay={index * 0.08}>
+									<GlassPanel className="h-full rounded-4xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-300/35">
+										<div className="flex items-start justify-between gap-4">
+											<div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-200">
+												<Icon className="h-5 w-5" />
+											</div>
+											<div className="rounded-full border border-cyan-400/15 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100">
+												{pkg.price}
+											</div>
+										</div>
+										<p className="mt-5 text-2xl font-bold text-white">{pkg.name}</p>
+										<p className="mt-3 text-sm leading-7 text-slate-300">{pkg.detail}</p>
+									</GlassPanel>
+								</Reveal>
+							);
+						})}
+					</div>
+				</section>
+
+				<section id="servicios" className="section-shell anchor-section py-8 md:py-12">
 					<Reveal>
 						<SectionHeading
 							eyebrow="Servicios"
 							title="Servicios Express con entrega rápida en 24h"
-							description="Intervenciones de software y mantenimiento para dejar tu equipo estable y listo el mismo día."
+							description="Servicios enfocados en laptops y software para dejar tu equipo limpio, estable y listo en el menor tiempo posible."
 						/>
 					</Reveal>
 					<div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -379,12 +480,12 @@ export default function LandingPage() {
 					</div>
 				</section>
 
-				<section id="reparaciones" className="section-shell py-10 md:py-12">
+				<section id="reparaciones" className="section-shell anchor-section py-10 md:py-12">
 					<Reveal>
 						<SectionHeading
 							eyebrow="Reparaciones"
 							title="Reparaciones físicas con proceso realista de 3 a 5 días"
-							description="Cuando se requieren piezas o sustituciones de hardware, trabajamos con tiempos claros y seguimiento continuo."
+							description="Cuando una laptop requiere teclado, bateria u otra refaccion, se cotiza la pieza y se trabaja con tiempos reales de llegada."
 						/>
 					</Reveal>
 					<div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -402,7 +503,7 @@ export default function LandingPage() {
 					</Reveal>
 				</section>
 
-				<section id="transparencia" className="section-shell py-10 md:py-16">
+				<section id="transparencia" className="section-shell anchor-section py-10 md:py-16">
 					<Reveal>
 						<GlassPanel strong className="overflow-hidden rounded-[36px] p-7 sm:p-10">
 							<div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
@@ -414,10 +515,10 @@ export default function LandingPage() {
 								</div>
 								<div className="rounded-[28px] border border-white/10 bg-white/6 p-6 text-base leading-8 text-slate-200 backdrop-blur-xl">
 									<p>
-										Para reparaciones de microelectrónica, corto circuito o cambio de metal líquido, trabajo en colaboración con laboratorios especializados para garantizar tu equipo.
+										Para reparaciones de microelectronica, corto circuito o cambio de metal liquido, trabajo en colaboracion con otro tecnico que si cuenta con las herramientas adecuadas para ese tipo de trabajo.
 									</p>
 									<p className="mt-4 text-sm leading-7 text-slate-400">
-										Eso significa procesos más seguros, diagnóstico más preciso y cero promesas improvisadas cuando tu dispositivo requiere equipamiento avanzado.
+										Mi enfoque principal es ser mas express, resolver rapido lo que si puedo cubrir directamente y no improvisar cuando tu equipo necesita un proceso mas especializado.
 									</p>
 								</div>
 							</div>
@@ -425,12 +526,12 @@ export default function LandingPage() {
 					</Reveal>
 				</section>
 
-				<section id="ubicaciones" className="section-shell py-10 md:py-16">
+				<section id="ubicaciones" className="section-shell anchor-section py-10 md:py-16">
 					<Reveal>
 						<SectionHeading
 							eyebrow="Cobertura Local"
 							title="Ubicaciones de recoleccion y entrega"
-							description="Trabajo con puntos locales cercanos para entregar y recibir equipos de forma mas practica y segura."
+							description="Todos los puntos estan en Hidalgo para que puedas identificar rapido cual te queda mas cerca antes de escribir."
 						/>
 					</Reveal>
 
@@ -444,6 +545,7 @@ export default function LandingPage() {
 									</div>
 									<p className="text-xl font-bold text-white">{location.title}</p>
 									<p className="mt-2 text-sm leading-6 text-slate-300">{location.detail}</p>
+									<p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Todo el servicio local se coordina en Hidalgo</p>
 									<MapEmbed src={location.iframeSrc} title={location.title} />
 								</GlassPanel>
 							</Reveal>
@@ -459,7 +561,7 @@ export default function LandingPage() {
 										Beneficio UPP
 									</div>
 									<p className="mt-3 text-2xl font-bold text-white">Descuentos especiales y servicios para estudiantes de la UPP</p>
-									<p className="mt-2 text-sm leading-7 text-slate-300">Punto sugerido: biblioteca UPP. Agenda por mensaje y coordinamos entrega, recoleccion y beneficio estudiantil.</p>
+									<p className="mt-2 text-sm leading-7 text-slate-300">Punto sugerido: biblioteca UPP. El descuento aplica por ser estudiante de la UPP y queda en {uppDiscount.toLowerCase()}.</p>
 								</div>
 								<a
 									href={uppMapsLink}
@@ -474,7 +576,7 @@ export default function LandingPage() {
 					</Reveal>
 				</section>
 
-				<section id="testimonios" className="section-shell py-10 md:py-16">
+				<section id="testimonios" className="section-shell anchor-section py-10 md:py-16">
 					<Reveal>
 						<SectionHeading
 							eyebrow="Prueba Social"
@@ -499,7 +601,7 @@ export default function LandingPage() {
 					</div>
 				</section>
 
-				<section id="contacto" className="section-shell py-10 md:py-16">
+				<section id="contacto" className="section-shell anchor-section py-10 md:py-16">
 					<Reveal>
 						<SectionHeading
 							eyebrow="Contacto"
