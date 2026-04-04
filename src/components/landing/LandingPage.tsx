@@ -249,18 +249,16 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 	const Icon = item.icon;
 
 	return (
-		<div className="group rounded-3xl border border-white/10 bg-white/6 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:bg-cyan-300/8 hover:shadow-[0_22px_50px_rgba(8,47,73,0.32)]">
-			<div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
-				<div className="flex gap-4">
+		<div className="group h-full rounded-3xl border border-white/10 bg-white/6 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:bg-cyan-300/8 hover:shadow-[0_22px_50px_rgba(8,47,73,0.32)] sm:p-6">
+			<div className="flex h-full flex-col gap-5">
+				<div className="flex items-start gap-4">
 					<div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-200 transition-colors duration-300 group-hover:border-cyan-300/45 group-hover:bg-cyan-400/20">
 						<Icon className="h-5 w-5" />
 					</div>
-					<div>
-						<p className="text-xl font-bold text-white">{item.name}</p>
-						<p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
-					</div>
+					<p className="text-2xl font-bold leading-tight text-white">{item.name}</p>
 				</div>
-				<div className="w-fit rounded-full border border-cyan-400/15 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 xl:shrink-0">
+				<p className="text-sm leading-7 text-slate-300">{item.detail}</p>
+				<div className="mt-auto w-fit rounded-full border border-cyan-400/15 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100">
 					{item.price}
 				</div>
 			</div>
@@ -270,7 +268,7 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 
 export default function LandingPage() {
 	return (
-		<div className="relative overflow-hidden pb-16 text-slate-100">
+		<div className="relative overflow-hidden pb-28 text-slate-100 md:pb-24">
 			<div className="pointer-events-none absolute inset-0 -z-10">
 				<div className="grid-fade absolute inset-0 opacity-40" />
 				<motion.div
@@ -488,7 +486,7 @@ export default function LandingPage() {
 							description="Cuando una laptop requiere teclado, bateria u otra refaccion, se cotiza la pieza y se trabaja con tiempos reales de llegada."
 						/>
 					</Reveal>
-					<div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+					<div className="mt-10 grid gap-5 md:grid-cols-2 2xl:grid-cols-3">
 						{repairServices.map((item, index) => (
 							<Reveal key={item.name} delay={index * 0.08}>
 								<ServiceCard item={item} />
