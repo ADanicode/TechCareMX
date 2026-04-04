@@ -268,7 +268,7 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 
 export default function LandingPage() {
 	return (
-		<div className="relative overflow-hidden pb-28 text-slate-100 md:pb-24">
+		<div className="relative overflow-hidden pb-20 text-slate-100 md:pb-14">
 			<div className="pointer-events-none absolute inset-0 -z-10">
 				<div className="grid-fade absolute inset-0 opacity-40" />
 				<motion.div
@@ -434,7 +434,7 @@ export default function LandingPage() {
 						<SectionHeading
 							eyebrow="Paquetes"
 							title="Paquetes sugeridos para mantenimiento y rendimiento"
-							description="Opciones claras para que el cliente entienda rapido cuanto incluye cada nivel de servicio y cuanto puede invertir."
+							description="Elige el paquete que mejor se adapte a tu equipo y presupuesto. Cada opcion indica exactamente que incluye y cuanto cuesta."
 						/>
 					</Reveal>
 					<div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -638,18 +638,18 @@ export default function LandingPage() {
 					<Reveal delay={0.28}>
 						<div className="mt-4 grid gap-3 md:grid-cols-2">
 							<div className="rounded-2xl border border-white/10 bg-white/6 p-4 text-sm text-slate-200">
-								<div className="mb-2 inline-flex items-center gap-2 text-cyan-100">
+								<div className="mb-2 flex items-center gap-2 text-cyan-100">
 									<Clock3 className="h-4 w-4" />
 									<span className="font-semibold">Respuesta agil</span>
 								</div>
-								Normalmente respondo tan pronto revise el mensaje para no retrasar tu servicio.
+								<p className="leading-7">Normalmente respondo tan pronto revise el mensaje para no retrasar tu servicio.</p>
 							</div>
 							<div className="rounded-2xl border border-white/10 bg-white/6 p-4 text-sm text-slate-200">
-								<div className="mb-2 inline-flex items-center gap-2 text-cyan-100">
+								<div className="mb-2 flex items-center gap-2 text-cyan-100">
 									<BadgeCheck className="h-4 w-4" />
 									<span className="font-semibold">Trabajo de calidad</span>
 								</div>
-								Cada equipo se entrega con validacion funcional y comunicacion clara de lo realizado.
+								<p className="leading-7">Cada equipo se entrega con validacion funcional y comunicacion clara de lo realizado.</p>
 							</div>
 						</div>
 					</Reveal>
