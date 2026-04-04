@@ -107,4 +107,12 @@
 		background-size: 72px 72px;
 		mask-image: radial-gradient(circle at center, black 38%, transparent 84%);
 	}
+
+	.no-scrollbar {
+		scrollbar-width: none;
+	}
+
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
 }

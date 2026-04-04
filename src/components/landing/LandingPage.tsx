@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
+	BadgeCheck,
 	Cable,
 	ChevronRight,
+	Clock3,
 	Cpu,
 	Gamepad2,
 	Gauge,
+	GraduationCap,
 	Keyboard,
 	KeyRound,
+	MapPin,
 	ShieldCheck,
 	Star,
 	type LucideIcon,
@@ -111,6 +115,76 @@ const testimonials = [
 	},
 ];
 
+const pickupLocations = [
+	{
+		title: 'Punto 1: Kiosco',
+		tag: 'Recoleccion y entrega local',
+		detail: 'Punto de referencia: kiosco. Ideal para entregas rapidas en zona centrica.',
+		iframeSrc:
+			'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d555.1834394433079!2d-98.78829331699878!3d19.981865694123236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1775330312835!5m2!1ses-419!2smx',
+	},
+	{
+		title: 'Punto 2: OXXO afuera',
+		tag: 'Entrega rapida por mensaje',
+		detail: 'Punto de referencia: OXXO afuera. Coordino por WhatsApp la hora exacta de encuentro.',
+		iframeSrc:
+			'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d283.73444198934124!2d-98.72095752826631!3d19.995255411029017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1775330699820!5m2!1ses-419!2smx',
+	},
+	{
+		title: 'Punto 3: Biblioteca UPP',
+		tag: 'Atencion local para estudiantes',
+		detail: 'Punto de referencia: biblioteca UPP. Aqui aplican descuentos y servicios especiales para estudiantes.',
+		iframeSrc:
+			'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1369.3056528003024!2d-98.6841144287174!3d19.98010697612693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1775330774296!5m2!1ses-419!2smx',
+	},
+];
+
+const uppMapsLink = 'https://maps.app.goo.gl/y4so8LQpG1yTjEin8';
+
+const quoteSteps = [
+	'Envias fotos + falla por WhatsApp.',
+	'Diagnostico claro con rango de costo.',
+	'Aprobacion y entrega con seguimiento.',
+];
+
+const confidenceSignals = [
+	'Revision tecnica con checklist en cada equipo.',
+	'Garantia sobre mano de obra en servicios realizados.',
+	'Comunicacion transparente antes de cualquier cambio.',
+];
+
+function MapEmbed({ src, title }: { src: string; title: string }) {
+	const [showMap, setShowMap] = useState(false);
+
+	return (
+		<div className="relative mt-4 overflow-hidden rounded-2xl border border-white/10">
+			{showMap ? (
+				<iframe
+					src={src}
+					className="h-64 w-full border-0"
+					allowFullScreen
+					loading="lazy"
+					referrerPolicy="no-referrer-when-downgrade"
+					title={title}
+				/>
+			) : (
+				<div className="relative flex h-64 flex-col items-center justify-center gap-3 bg-slate-900/85 px-5 text-center">
+					<div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.14),transparent_60%)]" />
+					<MapPin className="relative h-6 w-6 text-cyan-200" />
+					<p className="relative text-sm text-slate-200">Cargar mapa de {title}</p>
+					<button
+						type="button"
+						onClick={() => setShowMap(true)}
+						className="relative rounded-full bg-linear-to-r from-cyan-300 to-sky-400 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-950 transition-transform duration-300 hover:-translate-y-0.5"
+					>
+						Mostrar mapa
+					</button>
+				</div>
+			)}
+		</div>
+	);
+}
+
 function ServiceCard({ item }: { item: ServiceItem }) {
 	const Icon = item.icon;
 
@@ -161,8 +235,25 @@ export default function LandingPage() {
 						<nav className="hidden items-center gap-7 text-sm font-medium text-slate-300 md:flex">
 							<a href="#servicios" className="transition-colors hover:text-white">Servicios</a>
 							<a href="#reparaciones" className="transition-colors hover:text-white">Reparaciones</a>
+							<a href="#ubicaciones" className="transition-colors hover:text-white">Ubicaciones</a>
 							<a href="#testimonios" className="transition-colors hover:text-white">Testimonios</a>
 						</nav>
+					</div>
+					<div className="no-scrollbar -mx-2 flex gap-2 overflow-x-auto pb-3 md:hidden">
+						{[
+							{ href: '#servicios', label: 'Servicios' },
+							{ href: '#reparaciones', label: 'Reparaciones' },
+							{ href: '#ubicaciones', label: 'Ubicaciones' },
+							{ href: '#testimonios', label: 'Testimonios' },
+						].map((link) => (
+							<a
+								key={link.href}
+								href={link.href}
+								className="shrink-0 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-200"
+							>
+								{link.label}
+							</a>
+						))}
 					</div>
 				</div>
 			</header>
@@ -217,6 +308,10 @@ export default function LandingPage() {
 							<GlassPanel strong className="relative overflow-hidden rounded-4xl p-6 sm:p-8">
 								<div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cyan-300/60 to-transparent" />
 								<p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">Diagnóstico claro</p>
+								<div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-400/10 p-4">
+									<p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">Cotizacion profesional</p>
+									<p className="mt-2 text-sm leading-7 text-slate-100">Respuesta por mensaje y ruta de solucion con rango de precio antes de iniciar.</p>
+								</div>
 								<div className="mt-5 grid gap-4 md:grid-cols-2">
 									<div className="rounded-3xl border border-white/10 bg-white/6 p-5">
 										<p className="text-sm text-slate-400">Tiempo ágil</p>
@@ -229,6 +324,19 @@ export default function LandingPage() {
 										<p className="mt-2 text-sm leading-6 text-slate-200">Te explico alcances, costos y tiempos antes de mover cualquier pieza.</p>
 									</div>
 								</div>
+								<div className="mt-6 rounded-[28px] border border-white/10 bg-white/6 p-5">
+									<p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">Proceso de cotizacion</p>
+									<div className="mt-3 space-y-3">
+										{quoteSteps.map((step, index) => (
+											<div key={step} className="flex items-start gap-3 text-sm text-slate-300">
+												<div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-cyan-300/35 text-xs font-bold text-cyan-100">
+													{index + 1}
+												</div>
+												<p>{step}</p>
+											</div>
+										))}
+									</div>
+								</div>
 								<div className="mt-6 space-y-3 rounded-[28px] border border-white/10 bg-slate-950/35 p-5">
 									{[
 										'Soporte para laptops, PCs y consolas.',
@@ -238,6 +346,14 @@ export default function LandingPage() {
 										<div key={line} className="flex items-start gap-3">
 											<div className="mt-1 h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(103,232,249,0.75)]" />
 											<p className="text-sm leading-6 text-slate-300">{line}</p>
+										</div>
+									))}
+								</div>
+								<div className="mt-6 grid gap-3">
+									{confidenceSignals.map((signal) => (
+										<div key={signal} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-950/38 p-4 text-sm text-slate-200">
+											<BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />
+											<p>{signal}</p>
 										</div>
 									))}
 								</div>
@@ -309,6 +425,55 @@ export default function LandingPage() {
 					</Reveal>
 				</section>
 
+				<section id="ubicaciones" className="section-shell py-10 md:py-16">
+					<Reveal>
+						<SectionHeading
+							eyebrow="Cobertura Local"
+							title="Ubicaciones de recoleccion y entrega"
+							description="Trabajo con puntos locales cercanos para entregar y recibir equipos de forma mas practica y segura."
+						/>
+					</Reveal>
+
+					<div className="mt-10 grid gap-6 lg:grid-cols-3">
+						{pickupLocations.map((location, index) => (
+							<Reveal key={location.title} delay={index * 0.08}>
+								<GlassPanel className="h-full rounded-3xl p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/35">
+									<div className="mb-3 flex items-center gap-2 text-cyan-200">
+										<MapPin className="h-4 w-4" />
+										<p className="text-xs font-semibold uppercase tracking-[0.2em]">{location.tag}</p>
+									</div>
+									<p className="text-xl font-bold text-white">{location.title}</p>
+									<p className="mt-2 text-sm leading-6 text-slate-300">{location.detail}</p>
+									<MapEmbed src={location.iframeSrc} title={location.title} />
+								</GlassPanel>
+							</Reveal>
+						))}
+					</div>
+
+					<Reveal delay={0.2}>
+						<GlassPanel strong className="mt-8 rounded-4xl p-6">
+							<div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+								<div>
+									<div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
+										<GraduationCap className="h-4 w-4" />
+										Beneficio UPP
+									</div>
+									<p className="mt-3 text-2xl font-bold text-white">Descuentos especiales y servicios para estudiantes de la UPP</p>
+									<p className="mt-2 text-sm leading-7 text-slate-300">Punto sugerido: biblioteca UPP. Agenda por mensaje y coordinamos entrega, recoleccion y beneficio estudiantil.</p>
+								</div>
+								<a
+									href={uppMapsLink}
+									target="_blank"
+									rel="noreferrer"
+									className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-cyan-300 to-sky-400 px-6 py-3 text-sm font-bold text-slate-950 transition-transform duration-300 hover:-translate-y-0.5"
+								>
+									Abrir punto UPP
+								</a>
+							</div>
+						</GlassPanel>
+					</Reveal>
+				</section>
+
 				<section id="testimonios" className="section-shell py-10 md:py-16">
 					<Reveal>
 						<SectionHeading
@@ -368,6 +533,24 @@ export default function LandingPage() {
 							>
 								Cotizar por WhatsApp
 							</a>
+						</div>
+					</Reveal>
+					<Reveal delay={0.28}>
+						<div className="mt-4 grid gap-3 md:grid-cols-2">
+							<div className="rounded-2xl border border-white/10 bg-white/6 p-4 text-sm text-slate-200">
+								<div className="mb-2 inline-flex items-center gap-2 text-cyan-100">
+									<Clock3 className="h-4 w-4" />
+									<span className="font-semibold">Respuesta agil</span>
+								</div>
+								Normalmente respondo tan pronto revise el mensaje para no retrasar tu servicio.
+							</div>
+							<div className="rounded-2xl border border-white/10 bg-white/6 p-4 text-sm text-slate-200">
+								<div className="mb-2 inline-flex items-center gap-2 text-cyan-100">
+									<BadgeCheck className="h-4 w-4" />
+									<span className="font-semibold">Trabajo de calidad</span>
+								</div>
+								Cada equipo se entrega con validacion funcional y comunicacion clara de lo realizado.
+							</div>
 						</div>
 					</Reveal>
 				</section>

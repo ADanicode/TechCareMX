@@ -1,11 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import LandingPage from '../components/landing/LandingPage';
+import Layout from "../layouts/Layout.astro";
+import LandingPage from "../components/landing/LandingPage";
 ---
 
 <Layout
-	title="TechCareMX | Revive tu tecnología"
-	description="Soporte técnico local para computadoras y consolas con servicios express, reparaciones físicas y atención por WhatsApp."
+  title="TechCareMX | Revive tu tecnología"
+  description="Soporte técnico local para computadoras y consolas con servicios express, reparaciones físicas y atención por WhatsApp."
 >
-	<LandingPage client:load />
+  <LandingPage client:idle />
 </Layout>
